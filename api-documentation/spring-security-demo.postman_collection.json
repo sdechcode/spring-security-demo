@@ -2,7 +2,7 @@
 	"info": {
 		"_postman_id": "8a992123-c769-4589-abb3-e73de4bf4179",
 		"name": "spring-security-demo",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
 		"_exporter_id": "34985331"
 	},
 	"item": [
@@ -14,19 +14,7 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/api/v1/admin",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"v1",
-								"admin"
-							]
-						}
+						"url": "http://localhost:9090/api/v1/admin"
 					},
 					"response": []
 				},
@@ -35,19 +23,7 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/api/v1/user",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"v1",
-								"user"
-							]
-						}
+						"url": "http://localhost:9090/api/v1/user"
 					},
 					"response": []
 				},
@@ -56,19 +32,144 @@
 					"request": {
 						"method": "GET",
 						"header": [],
+						"url": "http://localhost:9090/api/v1/guest"
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": "http://localhost:9090/api/v1/users/login"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "keycloak",
+			"item": [
+				{
+					"name": "http://localhost:8080/realms/spring-security-demo/protocol/openid-connect/token",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "client_id",
+									"value": "spring-security-demo-api",
+									"type": "text"
+								},
+								{
+									"key": "client_secret",
+									"value": "o5qbd5ZTedWhJGoANksIs2msYIcyFirI",
+									"type": "text"
+								},
+								{
+									"key": "scope",
+									"value": "openid email profile address",
+									"type": "text"
+								},
+								{
+									"key": "grant_type",
+									"value": "client_credentials",
+									"type": "text"
+								}
+							]
+						},
+						"url": "http://localhost:8080/realms/spring-security-demo/protocol/openid-connect/token"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/realms/spring-security-demo/protocol/openid-connect/auth",
+					"request": {
+						"method": "GET",
+						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/v1/guest",
+							"raw": "http://localhost:8080/realms/spring-security-demo/protocol/openid-connect/auth?client_id=spring-security-demo-api-client&response_type=code&scope=openid&redirect_uri=http://localhost:9090/api/v1/guest&state=some state",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"api",
-								"v1",
-								"guest"
+								"realms",
+								"spring-security-demo",
+								"protocol",
+								"openid-connect",
+								"auth"
+							],
+							"query": [
+								{
+									"key": "client_id",
+									"value": "spring-security-demo-api-client"
+								},
+								{
+									"key": "response_type",
+									"value": "code"
+								},
+								{
+									"key": "scope",
+									"value": "openid"
+								},
+								{
+									"key": "redirect_uri",
+									"value": "http://localhost:9090/api/v1/guest"
+								},
+								{
+									"key": "state",
+									"value": "some state"
+								}
 							]
 						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/realms/spring-security-demo/protocol/openid-connect/token Copy",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "client_id",
+									"value": "spring-security-demo-api-client",
+									"type": "text"
+								},
+								{
+									"key": "client_secret",
+									"value": "Yf13RXJck2Yo4KaSuBO15wW0B7vxxg4Z",
+									"type": "text"
+								},
+								{
+									"key": "grant_type",
+									"value": "authorization_code",
+									"type": "text"
+								},
+								{
+									"key": "code",
+									"value": "5d132041-ab4e-4fe7-aaba-7989fff328a0.ef845b0a-29ac-40d4-8137-769df53b6f26.c79ca90a-1468-4834-9aa8-b6b65e3ee29f",
+									"type": "text"
+								},
+								{
+									"key": "redirect_uri",
+									"value": "http://localhost:9090/api/v1/guest",
+									"type": "text"
+								},
+								{
+									"key": "scope",
+									"value": "openid",
+									"type": "text"
+								}
+							]
+						},
+						"url": "http://localhost:8080/realms/spring-security-demo/protocol/openid-connect/token"
 					},
 					"response": []
 				}
@@ -76,19 +177,10 @@
 		}
 	],
 	"auth": {
-		"type": "basic",
-		"basic": [
-			{
-				"key": "password",
-				"value": "admin",
-				"type": "string"
-			},
-			{
-				"key": "username",
-				"value": "admin",
-				"type": "string"
-			}
-		]
+		"type": "bearer",
+		"bearer": {
+			"token": "eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJzZWxmIiwic3ViIjoidXNlciIsImV4cCI6MTcxNTk3MTUyOCwiaWF0IjoxNzE1OTY0MzI4LCJhdXRob3JpdGllcyI6IlJPTEVfdXNlciJ9.TZRH7zKp4aHEPRY3cAKW7aHKdYzClx6dxGSWlvCaqFMfZWyyKCVGJpyNdWVzR_D6C7ORs8HLNxsNYsMc83FH2Z3zr6eUJJlFMBKGN_fS54VOEd21G6705wc9IuXTZylUG1BgfLR5h3tWEk1BWNJISUfdEhfMoEFIBtfHJUJSR8kPmBjCFkxbzZpBwaDlUXP_zoEm5YaZ3-9r0RZMZOZsKv_fhEP48OHaZOYRCjmrQEsBIeRfjyCk4LKyyHLqC3LqdeSw2OkWLweL74s7csxv9az-KdzvRNZGVx0_4yYlM3qvshfvU6QjdEy9kyKOR2ypLMvmVQWL998Slqu5l538Ng"
+		}
 	},
 	"event": [
 		{

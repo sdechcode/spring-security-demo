@@ -21,12 +21,8 @@ public class SpringSecurityDemoApplication implements CommandLineRunner {
     @Autowired
     PasswordEncoder encoder;
 
-    /*
-    * After the application has been start it will create 3 users into h2
-    * */
     @Override
     public void run(String... args) throws Exception {
-        // Create some users.
         UserEntity u1 = new UserEntity();
         u1.setId(1);
         u1.setUsername("admin");

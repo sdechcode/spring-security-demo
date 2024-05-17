@@ -17,10 +17,6 @@ public class MyUserPrincipal implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        // Convert a user's roles from space-delimited string to a list of SimpleGrantedAuthority objects.
-        // E.g., john's roles are stored in a string like "admin user moderator", we need to convert it to a list of GrantedAuthority.
-        // Before conversion, we need to add this "ROLE_" prefix to each role name.
-        // Check test for example
         return Arrays.stream(StringUtils.tokenizeToStringArray(this.user.getRoles(), " "))
                 .map(role -> new SimpleGrantedAuthority("ROLE_" + role))
                 .toList();
@@ -54,6 +50,10 @@ public class MyUserPrincipal implements UserDetails {
     @Override
     public boolean isEnabled() {
         return user.isEnabled();
+    }
+
+    public UserEntity getUser() {
+        return user;
     }
 
 }
