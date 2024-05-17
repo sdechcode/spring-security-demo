@@ -1,0 +1,266 @@
+{
+	"info": {
+		"_postman_id": "8a992123-c769-4589-abb3-e73de4bf4179",
+		"name": "spring-security-demo",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "34985331"
+	},
+	"item": [
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "admin",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9090/api/v1/admin",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9090",
+							"path": [
+								"api",
+								"v1",
+								"admin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "user",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9090/api/v1/user",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9090",
+							"path": [
+								"api",
+								"v1",
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "guest",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9090/api/v1/guest",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9090",
+							"path": [
+								"api",
+								"v1",
+								"guest"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "keycloak",
+			"item": [
+				{
+					"name": "http://localhost:8080/realms/spring-security-demo/protocol/openid-connect/token",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "client_id",
+									"value": "spring-security-demo-api",
+									"type": "text"
+								},
+								{
+									"key": "client_secret",
+									"value": "o5qbd5ZTedWhJGoANksIs2msYIcyFirI",
+									"type": "text"
+								},
+								{
+									"key": "scope",
+									"value": "openid email profile address",
+									"type": "text"
+								},
+								{
+									"key": "grant_type",
+									"value": "client_credentials",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/realms/spring-security-demo/protocol/openid-connect/token",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"realms",
+								"spring-security-demo",
+								"protocol",
+								"openid-connect",
+								"token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/realms/spring-security-demo/protocol/openid-connect/auth",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/realms/spring-security-demo/protocol/openid-connect/auth?client_id=spring-security-demo-api-client&response_type=code&scope=openid&redirect_uri=http://localhost:9090/api/v1/guest&state=some state",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"realms",
+								"spring-security-demo",
+								"protocol",
+								"openid-connect",
+								"auth"
+							],
+							"query": [
+								{
+									"key": "client_id",
+									"value": "spring-security-demo-api-client"
+								},
+								{
+									"key": "response_type",
+									"value": "code"
+								},
+								{
+									"key": "scope",
+									"value": "openid"
+								},
+								{
+									"key": "redirect_uri",
+									"value": "http://localhost:9090/api/v1/guest"
+								},
+								{
+									"key": "state",
+									"value": "some state"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/realms/spring-security-demo/protocol/openid-connect/token Copy",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "client_id",
+									"value": "spring-security-demo-api-client",
+									"type": "text"
+								},
+								{
+									"key": "client_secret",
+									"value": "Yf13RXJck2Yo4KaSuBO15wW0B7vxxg4Z",
+									"type": "text"
+								},
+								{
+									"key": "grant_type",
+									"value": "authorization_code",
+									"type": "text"
+								},
+								{
+									"key": "code",
+									"value": "5d132041-ab4e-4fe7-aaba-7989fff328a0.ef845b0a-29ac-40d4-8137-769df53b6f26.c79ca90a-1468-4834-9aa8-b6b65e3ee29f",
+									"type": "text"
+								},
+								{
+									"key": "redirect_uri",
+									"value": "http://localhost:9090/api/v1/guest",
+									"type": "text"
+								},
+								{
+									"key": "scope",
+									"value": "openid",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/realms/spring-security-demo/protocol/openid-connect/token",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"realms",
+								"spring-security-demo",
+								"protocol",
+								"openid-connect",
+								"token"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJIRGZtVGo3S2VuZkVRelhIMmR2Qi1TckdzSEVyaHBJZVBxbzhBOUNFMFg4In0.eyJleHAiOjE3MTU5MzcxMDQsImlhdCI6MTcxNTkzNjgwNCwiYXV0aF90aW1lIjoxNzE1OTM1NzMyLCJqdGkiOiJlZGFlMjlkMi1iNjVkLTQ1Y2QtOTE1OC02NTdhZWFhZTViNzAiLCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwODAvcmVhbG1zL3NwcmluZy1zZWN1cml0eS1kZW1vIiwiYXVkIjoiYWNjb3VudCIsInN1YiI6ImMyMzVhZGVhLWNjNDUtNDU3OS1hNTIxLWI2OWYxZTU0NjA2ZiIsInR5cCI6IkJlYXJlciIsImF6cCI6InNwcmluZy1zZWN1cml0eS1kZW1vLWFwaS1jbGllbnQiLCJzZXNzaW9uX3N0YXRlIjoiZWY4NDViMGEtMjlhYy00MGQ0LTgxMzctNzY5ZGY1M2I2ZjI2IiwiYWNyIjoiMCIsInJlYWxtX2FjY2VzcyI6eyJyb2xlcyI6WyJvZmZsaW5lX2FjY2VzcyIsInVtYV9hdXRob3JpemF0aW9uIiwiVVNFUiIsImRlZmF1bHQtcm9sZXMtc3ByaW5nLXNlY3VyaXR5LWRlbW8iXX0sInJlc291cmNlX2FjY2VzcyI6eyJhY2NvdW50Ijp7InJvbGVzIjpbIm1hbmFnZS1hY2NvdW50IiwibWFuYWdlLWFjY291bnQtbGlua3MiLCJ2aWV3LXByb2ZpbGUiXX19LCJzY29wZSI6Im9wZW5pZCBlbWFpbCBwcm9maWxlIiwic2lkIjoiZWY4NDViMGEtMjlhYy00MGQ0LTgxMzctNzY5ZGY1M2I2ZjI2IiwiZW1haWxfdmVyaWZpZWQiOnRydWUsIm5hbWUiOiJwaXNldGggc2VrIiwicHJlZmVycmVkX3VzZXJuYW1lIjoicGlzZXRoc2VrIiwiZ2l2ZW5fbmFtZSI6InBpc2V0aCIsImZhbWlseV9uYW1lIjoic2VrIiwiZW1haWwiOiJwaXNldGhzZWs5ODk5QGdtYWlsLmNvbSJ9.2z8iAkOPOdQVBMSsVupwsPG314XQ9KicwSUfv3S9YiqWOjr5U7YYBOZGYsIJNcg-BipYrpCU2F6IhCEtdYu5LMLvFB3mU5us4wCyGhwRIcd8GelM4Selc4ezqlF250OXOP2kWKGkLUjc1ioMzp1YTJySkkD6ktnxWng_TBiRQXVptMxsQD1d7wHMiyZB3vAZv8Ohn-YMUuySrBIngB1IDOIhEYJtAk6q1FCrjcSev0G4Df5DzX75JZ1liFVddGbBHgkrCCB3RJXVZKineYSbAqDGFh_r_aQV4BbaBcVpRVpSdxiA7TptBEud7nssko5ovV20gV8Vx9EyRFzWfOArdg",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
