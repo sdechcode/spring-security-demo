@@ -3,5 +3,11 @@ spring:
     name: MASTER-APP
   profiles:
     active: dev
+  web:
+    resources:
+      add-mappings: false
+api:
+  endpoint:
+    base-url: /api/v1
 server:
   port: 8080
