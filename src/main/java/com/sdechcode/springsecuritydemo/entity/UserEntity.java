@@ -18,7 +18,7 @@ import java.io.Serializable;
 public class UserEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    private Long id;
 
     @NotEmpty(message = "username is required.")
     @Column(nullable = false, length = 100)

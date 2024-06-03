@@ -1,17 +1,18 @@
 package com.sdechcode.springsecuritydemo.api.user;
 
-import com.sdechcode.springsecuritydemo.dto.user.UserDto;
+import com.sdechcode.springsecuritydemo.dto.user.UserRequestDto;
+import com.sdechcode.springsecuritydemo.dto.user.UserResponseDto;
 
 import java.util.List;
 
 public interface UserService {
-    List<UserDto> findAll();
+    List<UserResponseDto> findAll();
 
-    UserDto findById(Long userID);
+    UserResponseDto findById(Long userID);
 
-    UserDto save(UserDto request);
+    UserResponseDto save(UserRequestDto request);
 
-    UserDto update(Long userID, UserDto request);
+    UserResponseDto update(Long userID, UserRequestDto request);
 
     void delete(Long userID);
 }

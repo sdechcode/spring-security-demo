@@ -34,13 +34,13 @@ public class PostController {
         return new Result(true, StatusCode.SUCCESS, "Add success", postDto);
     }
 
-    @PutMapping("/{postID}")
+    @PutMapping(value = "/{postID}")
     public Result updatePost(@PathVariable(name = "postID") Long postID, @Valid @RequestBody PostDto request) {
         PostDto postDto = postService.update(postID, request);
         return new Result(true, StatusCode.SUCCESS, "Update success", postDto);
     }
 
-    @DeleteMapping("/{postID}")
+    @DeleteMapping(value = "/{postID}")
     public Result deletePost(@PathVariable(name = "postID") Long postID) {
         postService.delete(postID);
         return new Result(true, StatusCode.SUCCESS, "Delete success");

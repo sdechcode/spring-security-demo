@@ -1,4 +1,9 @@
 package com.sdechcode.springsecuritydemo.dto.template;
 
-public record TemplateResponseDto() {
+public record TemplateResponseDto(
+        Long id,
+        String name,
+        String description,
+        String file
+) {
 }

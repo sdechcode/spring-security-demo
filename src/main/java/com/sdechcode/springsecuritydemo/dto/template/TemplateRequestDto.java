@@ -1,4 +1,11 @@
 package com.sdechcode.springsecuritydemo.dto.template;
 
-public record TemplateRequestDto() {
+import jakarta.validation.constraints.NotEmpty;
+
+public record TemplateRequestDto(
+        @NotEmpty(message = "name is required.")
+        String name,
+        String description,
+        String file
+) {
 }

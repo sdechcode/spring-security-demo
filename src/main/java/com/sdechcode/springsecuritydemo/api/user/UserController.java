@@ -1,6 +1,7 @@
 package com.sdechcode.springsecuritydemo.api.user;
 
-import com.sdechcode.springsecuritydemo.dto.user.UserDto;
+import com.sdechcode.springsecuritydemo.dto.user.UserRequestDto;
+import com.sdechcode.springsecuritydemo.dto.user.UserResponseDto;
 import com.sdechcode.springsecuritydemo.system.Result;
 import com.sdechcode.springsecuritydemo.system.StatusCode;
 import jakarta.validation.Valid;
@@ -18,25 +19,25 @@ public class UserController {
 
     @GetMapping(value = "")
     public Result findAllUsers() {
-        List<UserDto> users = userService.findAll();
+        List<UserResponseDto> users = userService.findAll();
         return new Result(true, StatusCode.SUCCESS, "Find all success", users);
     }
 
     @GetMapping(value = "/{userID}")
     public Result findUserByID(@PathVariable(name = "userID") Long userID) {
-        UserDto user = userService.findById(userID);
+        UserResponseDto user = userService.findById(userID);
         return new Result(true, StatusCode.SUCCESS, "Find one success", user);
     }
 
     @PostMapping(value = "")
-    public Result addUser(@Valid @RequestBody UserDto request) {
-        UserDto userDto = userService.save(request);
+    public Result addUser(@Valid @RequestBody UserRequestDto request) {
+        UserResponseDto userDto = userService.save(request);
         return new Result(true, StatusCode.SUCCESS, "Add success", userDto);
     }
 
     @PutMapping(value = "/{userID}")
-    public Result updateUser(@PathVariable(name = "userID") Long userID, @Valid @RequestBody UserDto request) {
-        UserDto userDto = userService.update(userID, request);
+    public Result updateUser(@PathVariable(name = "userID") Long userID, @Valid @RequestBody UserRequestDto request) {
+        UserResponseDto userDto = userService.update(userID, request);
         return new Result(true, StatusCode.SUCCESS, "Update success", userDto);
     }
 

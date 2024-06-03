@@ -1,17 +1,18 @@
 package com.sdechcode.springsecuritydemo.api.template;
 
-import com.sdechcode.springsecuritydemo.dto.template.TemplateDto;
+import com.sdechcode.springsecuritydemo.dto.template.TemplateRequestDto;
+import com.sdechcode.springsecuritydemo.dto.template.TemplateResponseDto;
 
 import java.util.List;
 
 public interface TemplateService {
-    List<TemplateDto> findAll();
+    List<TemplateResponseDto> findAll();
 
-    TemplateDto findById(Long templateID);
+    TemplateResponseDto findById(Long templateID);
 
-    TemplateDto save(TemplateDto request);
+    TemplateResponseDto save(TemplateRequestDto request);
 
-    TemplateDto update(Long templateID, TemplateDto request);
+    TemplateResponseDto update(Long templateID, TemplateRequestDto request);
 
     void delete(Long templateID);
 }

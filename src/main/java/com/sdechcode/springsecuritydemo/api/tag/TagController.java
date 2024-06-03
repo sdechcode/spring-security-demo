@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("${api.endpoint.base-url}/tags")
+@RequestMapping(value = "${api.endpoint.base-url}/tags")
 @RequiredArgsConstructor
 public class TagController {
 
