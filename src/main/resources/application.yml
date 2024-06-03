@@ -6,8 +6,16 @@ spring:
   web:
     resources:
       add-mappings: false
+  servlet:
+    multipart:
+      max-request-size: 1GB
+      max-file-size: 1GB
+server:
+  port: 8080
 api:
   endpoint:
     base-url: /api/v1
-server:
-  port: 8080
+aws:
+  access: 0cc0def160e07c282aa620428875745c
+  secret: c0d607a42371d7359d7598529aee74052e862ca21085421eb4d69e9bc798bce5
+  account-no: 085c13cffae13db09440b326021c755c
