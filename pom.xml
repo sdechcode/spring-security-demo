@@ -54,9 +54,9 @@
         <dependency>
             <groupId>com.amazonaws</groupId>
             <artifactId>aws-java-sdk</artifactId>
-            <version>1.12.70</version>
+            <version>1.12.735</version>
         </dependency>
-        <!-- Apache POI, for doc mapper -->
+        <!-- Document, for text replacer docx and doc -->
         <dependency>
             <groupId>org.apache.poi</groupId>
             <artifactId>poi-ooxml</artifactId>
@@ -79,6 +79,7 @@
             <artifactId>h2</artifactId>
             <scope>runtime</scope>
         </dependency>
+
     </dependencies>
 
     <build>

@@ -1,11 +1,12 @@
-package com.sdechcode.springsecuritydemo.api.docmapper;
+package com.sdechcode.springsecuritydemo.api.document;
 
-import java.io.*;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.net.URLDecoder;
 import java.util.List;
-import java.util.UUID;
 
-import lombok.extern.log4j.Log4j2;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.apache.poi.xwpf.usermodel.XWPFParagraph;
 import org.apache.poi.xwpf.usermodel.XWPFRun;
@@ -15,26 +16,22 @@ import org.apache.poi.xwpf.usermodel.XWPFTableRow;
 import org.springframework.stereotype.Service;
 
 @Service
-@Log4j2
-public class DocMapperService {
+public class DocxNaiveTextReplacer {
 
     public void replaceText() throws IOException {
-        log.info(">>>> replaceText I");
         String p = getClass().getClassLoader()
-                .getResource("Template_1.docx")
+                .getResource("Template.docx")
                 .getPath();
-        String filePath = URLDecoder.decode(p, "UTF-8"); // Protect the white space
-        System.out.println(filePath);
+        String filePath = URLDecoder.decode(p, "UTF-8");
         try (InputStream inputStream = new FileInputStream(filePath)) {
             XWPFDocument doc = new XWPFDocument(inputStream);
-            doc = replaceText(doc, "Hi", "Hello");
-            saveFile(UUID.randomUUID() + ".docx", doc);
+            doc = replaceText(doc, "username", "Sek Piseth");
+            saveFile(filePath, doc);
             doc.close();
         }
     }
 
     private XWPFDocument replaceText(XWPFDocument doc, String originalText, String updatedText) {
-        log.info(">>>> replaceText II");
         replaceTextInParagraphs(doc.getParagraphs(), originalText, updatedText);
         for (XWPFTable tbl : doc.getTables()) {
             for (XWPFTableRow row : tbl.getRows()) {
@@ -47,12 +44,10 @@ public class DocMapperService {
     }
 
     private void replaceTextInParagraphs(List<XWPFParagraph> paragraphs, String originalText, String updatedText) {
-        log.info(">>>> replaceTextInParagraphs I");
         paragraphs.forEach(paragraph -> replaceTextInParagraph(paragraph, originalText, updatedText));
     }
 
     private void replaceTextInParagraph(XWPFParagraph paragraph, String originalText, String updatedText) {
-        log.info(">>>> replaceTextInParagraph II");
         List<XWPFRun> runs = paragraph.getRuns();
         for (XWPFRun run : runs) {
             String text = run.getText(0);
@@ -64,7 +59,6 @@ public class DocMapperService {
     }
 
     private void saveFile(String filePath, XWPFDocument doc) throws IOException {
-        log.info(">>>> saveFile");
         try (FileOutputStream out = new FileOutputStream(filePath)) {
             doc.write(out);
         }
