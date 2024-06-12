@@ -39,7 +39,7 @@ public class S3BucketStorageServiceImpl implements S3BucketStorageService {
 
         s3Client.putObject(bucketName, keyName, value, metadata);
         log.info("File uploaded to bucket({}): {}", bucketName, keyName);
-    }    
+    }
 
     @Override
     public ByteArrayOutputStream downloadFile(

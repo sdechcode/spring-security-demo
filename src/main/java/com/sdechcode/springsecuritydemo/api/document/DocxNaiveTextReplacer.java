@@ -20,12 +20,12 @@ public class DocxNaiveTextReplacer {
 
     public void replaceText() throws IOException {
         String p = getClass().getClassLoader()
-                .getResource("Template.docx")
+                .getResource("CERTIFICATE.docx")
                 .getPath();
         String filePath = URLDecoder.decode(p, "UTF-8");
         try (InputStream inputStream = new FileInputStream(filePath)) {
             XWPFDocument doc = new XWPFDocument(inputStream);
-            doc = replaceText(doc, "username", "Sek Piseth");
+            doc = replaceText(doc, "Username", "Lorn Limhai");
             saveFile(filePath, doc);
             doc.close();
         }

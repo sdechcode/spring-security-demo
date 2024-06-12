@@ -15,9 +15,8 @@ public class WebMvcConfig implements WebMvcConfigurer {
     @SuppressWarnings("null")
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(rateLimitInterceptor);
-                //.addPathPatterns("/api/v1/users/**");
-                //.addPathPatterns("/v1/bpmn-processes/process-definition/{id}/start");
+        registry.addInterceptor(rateLimitInterceptor)
+                .addPathPatterns("/api/v1/test/**"); //TODO: We need to specify the real api when Impl security
     }
 
 }

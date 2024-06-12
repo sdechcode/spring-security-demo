@@ -1,7 +1,7 @@
 package com.sdechcode.springsecuritydemo.system.interceptor;
 
-/*import com.github.benmanes.caffeine.cache.Cache;
-import com.github.benmanes.caffeine.cache.Caffeine;*/
+import com.github.benmanes.caffeine.cache.Cache;
+import com.github.benmanes.caffeine.cache.Caffeine;
 import io.github.bucket4j.Bandwidth;
 import io.github.bucket4j.Bucket;
 import io.github.bucket4j.Refill;
@@ -19,7 +19,7 @@ import java.util.concurrent.TimeUnit;
 @Component
 public class RateLimitInterceptor implements HandlerInterceptor {
 
-    /*private final Map<String, Bucket> buckets;
+    private final Map<String, Bucket> buckets;
 
     public RateLimitInterceptor() {
         Cache<String, Bucket> cache = Caffeine.newBuilder()
@@ -31,7 +31,8 @@ public class RateLimitInterceptor implements HandlerInterceptor {
     @SuppressWarnings("null")
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        String userId = SecurityContextUtility.getUserID();
+        //String userId = SecurityContextUtility.getUserID(); //TODO: When we have security need to specify the real user
+        String userId = "testingID";
         Bucket requestBucket = buckets.computeIfAbsent(userId, this::newBucket);
         if (!requestBucket.tryConsume(1)) {
             response.setStatus(HttpStatus.TOO_MANY_REQUESTS.value());
@@ -44,23 +45,6 @@ public class RateLimitInterceptor implements HandlerInterceptor {
         return Bucket.builder()
                 .addLimit(Bandwidth.classic(5, Refill.greedy(5, Duration.ofMinutes(5))))
                 .build();
-    }*/
-
-    private final Bucket requestBucket;
-
-    public RateLimitInterceptor() {
-        this.requestBucket = Bucket.builder()
-                .addLimit(Bandwidth.classic(10, Refill.intervally(10, Duration.ofMinutes(1))))
-                .build();
-    }
-
-    @Override
-    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        if (!requestBucket.tryConsume(1)) {
-            response.setStatus(HttpStatus.TOO_MANY_REQUESTS.value());
-            return false;
-        }
-        return true;
     }
 
 }

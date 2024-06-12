@@ -15,7 +15,6 @@ server:
 api:
   endpoint:
     base-url: /api/v1
-
 # need to move to production yml later
 aws:
   access: 0cc0def160e07c282aa620428875745c

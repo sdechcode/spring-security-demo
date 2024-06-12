@@ -1,5 +1,6 @@
 package com.sdechcode.springsecuritydemo.system;
 
+import com.sdechcode.springsecuritydemo.api.document.DocxNaiveTextReplacer;
 import com.sdechcode.springsecuritydemo.entity.*;
 import com.sdechcode.springsecuritydemo.repo.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,8 @@ public class DBDataInitializer implements CommandLineRunner {
     private TemplateRepository templateRepository;
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private DocxNaiveTextReplacer docxNaiveTextReplacer;
 
     @Override
     public void run(String... args) throws Exception {
@@ -86,6 +89,9 @@ public class DBDataInitializer implements CommandLineRunner {
         u2.setRoles("user");
 
         this.userRepository.saveAll(List.of(u1,u2));
+
+        // Test generate certificate
+        docxNaiveTextReplacer.replaceText();
     }
 
 }
