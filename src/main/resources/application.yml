@@ -15,6 +15,10 @@ server:
 api:
   endpoint:
     base-url: /api/v1
+khmerlang:
+  client:
+    base-url: https://api.khmerlang.com/v1/word-segmentation
+
 # need to move to production yml later
 aws:
   access: 0cc0def160e07c282aa620428875745c

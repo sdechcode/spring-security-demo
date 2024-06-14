@@ -6,6 +6,7 @@ public record TemplateRequestDto(
         @NotEmpty(message = "name is required.")
         String name,
         String description,
+        Object jsonData,
         String file
 ) {
 }

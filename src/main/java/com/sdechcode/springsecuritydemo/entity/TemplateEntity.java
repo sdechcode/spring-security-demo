@@ -1,7 +1,9 @@
 package com.sdechcode.springsecuritydemo.entity;
 
+import com.fasterxml.jackson.annotation.JsonRawValue;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.Type;
 
 import java.io.Serializable;
 
@@ -22,6 +24,10 @@ public class TemplateEntity implements Serializable {
 
     @Column(length = 200)
     private String description;
+
+    @Column(columnDefinition = "json")
+    @JsonRawValue
+    private String jsonData;
 
     @Column(nullable = false, length = 50)
     private String file;
