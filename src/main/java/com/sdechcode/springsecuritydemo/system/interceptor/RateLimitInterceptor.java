@@ -31,7 +31,7 @@ public class RateLimitInterceptor implements HandlerInterceptor {
     @SuppressWarnings("null")
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        //String userId = SecurityContextUtility.getUserID(); //TODO: When we have security need to specify the real user
+        //String userId = SecurityContextUtil.getUserID(); //TODO: When we have security need to specify the real user
         String userId = "testingID";
         Bucket requestBucket = buckets.computeIfAbsent(userId, this::newBucket);
         if (!requestBucket.tryConsume(1)) {
