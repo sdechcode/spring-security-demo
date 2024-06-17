@@ -115,12 +115,16 @@ public class DBDataInitializer implements CommandLineRunner {
         log.info("Object to Json {} ", res);*/
 
         // Test Tika
-        InputStream stream = this.getClass().getClassLoader()
+        /*InputStream stream = this.getClass().getClassLoader()
                 .getResourceAsStream("khmerText.txt");
         String metadata = TikaAnalysis.extractContentUsingParser(stream);
         System.out.println(metadata.isBlank());
         System.out.println(metadata.isEmpty());
-        System.out.println("Detected document type: " + metadata);
+        System.out.println("Detected document type: " + metadata);*/
+
+        // Test Json util
+        InputStream stream = this.getClass().getClassLoader().getResourceAsStream("mptc.json");
+        System.out.println(stream);
     }
 
 }
