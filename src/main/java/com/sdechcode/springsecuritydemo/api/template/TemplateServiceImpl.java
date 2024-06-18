@@ -71,7 +71,7 @@ public class TemplateServiceImpl implements TemplateService {
         KhmerLangRequestDto khmerLangRequestDto = new KhmerLangRequestDto(replaceAllDes1, false);
         KhmerLangResponseDto khmerLangResponseDto = this.khmerlangClient.wordSegmentation(khmerLangRequestDto);
 
-        String joinString = String.join("", khmerLangResponseDto.results());
+        String joinString = String.join("​", khmerLangResponseDto.results());
         String finalResult = joinString.replaceAll("␣", " ");
 
         log.info("Original Des1 : {} ", des1);
