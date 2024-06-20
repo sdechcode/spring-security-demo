@@ -1,6 +1,6 @@
 package com.sdechcode.springsecuritydemo.api.template;
 
-import com.sdechcode.springsecuritydemo.api.document.KhmerlangClient;
+import com.sdechcode.springsecuritydemo.system.client.KhmerlangClient;
 import com.sdechcode.springsecuritydemo.dto.khmerlang.KhmerLangRequestDto;
 import com.sdechcode.springsecuritydemo.dto.khmerlang.KhmerLangResponseDto;
 import com.sdechcode.springsecuritydemo.dto.template.TemplateRequestDto;
@@ -15,7 +15,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor

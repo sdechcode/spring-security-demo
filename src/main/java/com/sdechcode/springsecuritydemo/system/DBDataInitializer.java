@@ -1,15 +1,9 @@
 package com.sdechcode.springsecuritydemo.system;
 
 import com.sdechcode.springsecuritydemo.api.document.DocxNaiveTextReplacer;
-import com.sdechcode.springsecuritydemo.api.document.KhmerlangClient;
-import com.sdechcode.springsecuritydemo.api.document.TikaAnalysis;
-import com.sdechcode.springsecuritydemo.dto.khmerlang.KhmerLangRequestDto;
-import com.sdechcode.springsecuritydemo.dto.khmerlang.KhmerLangResponseDto;
 import com.sdechcode.springsecuritydemo.entity.*;
 import com.sdechcode.springsecuritydemo.repo.*;
-import com.sdechcode.springsecuritydemo.util.JsonUtil;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.tika.metadata.Metadata;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Profile;

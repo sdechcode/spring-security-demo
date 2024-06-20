@@ -1,4 +1,4 @@
-package com.sdechcode.springsecuritydemo.api.document;
+package com.sdechcode.springsecuritydemo.system.client;
 
 import com.sdechcode.springsecuritydemo.dto.khmerlang.KhmerLangRequestDto;
 import com.sdechcode.springsecuritydemo.dto.khmerlang.KhmerLangResponseDto;
