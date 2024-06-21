@@ -1,8 +1,5 @@
 package com.sdechcode.springsecuritydemo.api.template;
 
-import com.sdechcode.springsecuritydemo.client.KhmerlangClient;
-import com.sdechcode.springsecuritydemo.dto.khmerlang.KhmerLangRequestDto;
-import com.sdechcode.springsecuritydemo.dto.khmerlang.KhmerLangResponseDto;
 import com.sdechcode.springsecuritydemo.dto.template.TemplateRequestDto;
 import com.sdechcode.springsecuritydemo.dto.template.TemplateResponseDto;
 import com.sdechcode.springsecuritydemo.entity.TemplateEntity;
@@ -14,7 +11,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
@@ -22,20 +18,19 @@ import java.util.Map;
 public class TemplateServiceImpl implements TemplateService {
 
     private final TemplateRepository templateRepository;
-    private final KhmerlangClient khmerlangClient;
 
     @Override
     public List<TemplateResponseDto> findAll() {
         List<TemplateEntity> templateEntities = this.templateRepository.findAll();
         return templateEntities.stream()
-                .map(t -> new TemplateResponseDto(t.getId(), t.getName(), t.getDescription(), t.getFile())).toList();
+                .map(t -> new TemplateResponseDto(t.getId(), t.getName(), t.getDescription(), t.getJsonData(), t.getFile())).toList();
     }
 
     @Override
     public TemplateResponseDto findById(Long templateID) {
         TemplateEntity t = this.templateRepository.findById(templateID)
                 .orElseThrow(() -> new ObjectNotFoundException("template", templateID));
-        return new TemplateResponseDto(t.getId(), t.getName(), t.getDescription(), t.getFile());
+        return new TemplateResponseDto(t.getId(), t.getName(), t.getDescription(), t.getJsonData(), t.getFile());
     }
 
     @Override
@@ -47,11 +42,36 @@ public class TemplateServiceImpl implements TemplateService {
                 .file(request.file())
                 .build();
         TemplateEntity savedTemplate = this.templateRepository.save(newTemplate);
+        log.info("saved template {}", savedTemplate.getJsonData());
 
-       /* Map<String, Object> response1 = JsonUtil.object2Map(request.jsonData());
+        // TODO: After saved template it should response the json string back to the response
+        return new TemplateResponseDto(savedTemplate.getId(), savedTemplate.getName(), savedTemplate.getDescription(), newTemplate.getJsonData(), savedTemplate.getFile());
+    }
+
+    @Override
+    public TemplateResponseDto update(Long templateID, TemplateRequestDto request) {
+        TemplateEntity oldTemplate = this.templateRepository.findById(templateID)
+                .orElseThrow(() -> new ObjectNotFoundException("template", templateID));
+        oldTemplate.setName(request.name());
+        oldTemplate.setDescription(request.description());
+        oldTemplate.setJsonData(JsonUtil.object2Json(request.jsonData()));
+        oldTemplate.setFile(request.file());
+        TemplateEntity updatedTemplate = this.templateRepository.save(oldTemplate);
+        return new TemplateResponseDto(updatedTemplate.getId(), updatedTemplate.getName(), updatedTemplate.getDescription(), updatedTemplate.getJsonData(), updatedTemplate.getFile());
+    }
+
+    @Override
+    public void delete(Long templateID) {
+        this.templateRepository.findById(templateID).orElseThrow(() -> new ObjectNotFoundException("template", templateID));
+        this.templateRepository.deleteById(templateID);
+    }
+
+}
+
+/*Map<String, Object> response1 = JsonUtil.object2Map(request.jsonData());
         Map<String, Object> response2 = JsonUtil.object2Map(response1.get("willingnessPurposeMasterDegree"));
         Map<String, Object> response3 = JsonUtil.object2Map(response2.get("pleaseConfirmPurposeChoosingAboveSkillsEducationalInstitutions"));
-        log.info("Response 3: {} ", response3.get("value"));*/
+        log.info("Response 3: {} ", response3.get("value"));
 
         Map<String, Object> response = JsonUtil.object2Map(request.jsonData());
         Map<String, Object> res1 = JsonUtil.object2Map(
@@ -79,26 +99,4 @@ public class TemplateServiceImpl implements TemplateService {
         log.info("Replaced Des2 : {} ", replaceAllDes2);
         log.info("KhmerLangResponseDto 1: {} ", khmerLangResponseDto);
         log.info("Joining String : {} ", joinString);
-        log.info("Final Result : {} ", finalResult);
-
-        return new TemplateResponseDto(savedTemplate.getId(), savedTemplate.getName(), savedTemplate.getDescription(), savedTemplate.getFile());
-    }
-
-    @Override
-    public TemplateResponseDto update(Long templateID, TemplateRequestDto request) {
-        TemplateEntity oldTemplate = this.templateRepository.findById(templateID)
-                .orElseThrow(() -> new ObjectNotFoundException("template", templateID));
-        oldTemplate.setName(request.name());
-        oldTemplate.setDescription(request.description());
-        oldTemplate.setFile(request.file());
-        TemplateEntity updatedTemplate = this.templateRepository.save(oldTemplate);
-        return new TemplateResponseDto(updatedTemplate.getId(), updatedTemplate.getName(), updatedTemplate.getDescription(), updatedTemplate.getFile());
-    }
-
-    @Override
-    public void delete(Long templateID) {
-        this.templateRepository.findById(templateID).orElseThrow(() -> new ObjectNotFoundException("template", templateID));
-        this.templateRepository.deleteById(templateID);
-    }
-
-}
+        log.info("Final Result : {} ", finalResult);*/
