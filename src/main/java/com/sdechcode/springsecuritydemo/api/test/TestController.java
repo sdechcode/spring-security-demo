@@ -1,6 +1,6 @@
 package com.sdechcode.springsecuritydemo.api.test;
 
-import com.sdechcode.springsecuritydemo.system.client.KhmerlangClient;
+import com.sdechcode.springsecuritydemo.client.KhmerlangClient;
 import com.sdechcode.springsecuritydemo.dto.khmerlang.KhmerLangRequestDto;
 import com.sdechcode.springsecuritydemo.dto.khmerlang.KhmerLangResponseDto;
 import com.sdechcode.springsecuritydemo.util.JsonUtil;
