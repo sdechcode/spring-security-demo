@@ -35,16 +35,16 @@ public class TestController {
         return "testing...!";
     }
 
-    @PostMapping
+    /*@PostMapping
     public void jsonTest(@RequestBody Object object) {
         JsonNode original = JsonUtil.object2Node(object);
         log.info("JsonNode Original {} ", original);
 
         JsonNode updated = searchForTextArea(original);
         log.info("JsonNode Update {} ", updated);
-    }
+    }*/
 
-    private JsonNode searchForTextArea(JsonNode node) {
+    /*private JsonNode searchForTextArea(JsonNode node) {
         if (node.isObject()) {
             Iterator<Map.Entry<String, JsonNode>> fields = node.fields();
             while (fields.hasNext()) {
@@ -82,7 +82,7 @@ public class TestController {
             return node;
         }
         return null; // Or handle the case where node is neither object nor array
-    }
+    }*/
 
     /*private static void searchForTextArea(JsonNode node) {
         if (node.isObject()) {

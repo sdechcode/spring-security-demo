@@ -1,12 +1,10 @@
-package com.sdechcode.springsecuritydemo.api.document;
+package com.sdechcode.springsecuritydemo.api.docgen;
 
 import java.io.File;
 import java.io.IOException;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.MappingIterator;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.dataformat.csv.CsvMapper;
 import com.fasterxml.jackson.dataformat.csv.CsvSchema;
 import com.fasterxml.jackson.dataformat.csv.CsvSchema.Builder;

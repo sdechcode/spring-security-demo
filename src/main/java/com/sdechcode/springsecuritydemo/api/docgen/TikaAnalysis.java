@@ -1,4 +1,4 @@
-package com.sdechcode.springsecuritydemo.api.document;
+package com.sdechcode.springsecuritydemo.api.docgen;
 
 import java.io.IOException;
 import java.io.InputStream;
