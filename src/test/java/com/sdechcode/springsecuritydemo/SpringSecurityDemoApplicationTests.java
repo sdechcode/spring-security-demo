@@ -14,5 +14,3 @@ class SpringSecurityDemoApplicationTests {
     }
 
 }
-
-record Car(String model, Integer price){}
