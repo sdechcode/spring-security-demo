@@ -51,12 +51,6 @@
             <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
             <version>2.5.0</version>
         </dependency>
-        <!-- AWS S3 -->
-        <dependency>
-            <groupId>com.amazonaws</groupId>
-            <artifactId>aws-java-sdk</artifactId>
-            <version>1.12.735</version>
-        </dependency>
         <!-- Document, for text replacer docx and doc -->
         <dependency>
             <groupId>org.apache.poi</groupId>
@@ -99,12 +93,6 @@
             <groupId>org.apache.tika</groupId>
             <artifactId>tika-core</artifactId>
             <version>2.9.2</version>
-        </dependency>
-        <!-- Twilio, for OTP -->
-        <dependency>
-            <groupId>com.twilio.sdk</groupId>
-            <artifactId>twilio</artifactId>
-            <version>10.3.0</version>
         </dependency>
         <!-- Testing -->
         <dependency>

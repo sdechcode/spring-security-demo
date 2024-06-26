@@ -18,10 +18,3 @@ api:
 khmerlang:
   client:
     base-url: https://api.khmerlang.com/v1/word-segmentation
-
-# sth need to move
-aws:
-  access: 0cc0def160e07c282aa620428875745c
-  secret: c0d607a42371d7359d7598529aee74052e862ca21085421eb4d69e9bc798bce5
-  account-no: 085c13cffae13db09440b326021c755c
-
